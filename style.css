@@ -1,0 +1,74 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Nunito',sans-serif;
+background:#faf7f1;
+background-image:
+radial-gradient(circle at 20% 20%, rgba(108,121,193,.06) 0 3px, transparent 3px),
+radial-gradient(circle at 80% 80%, rgba(108,121,193,.05) 0 2px, transparent 2px);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+overflow:hidden;
+color:#222;
+}
+
+.container{
+width:min(92%,720px);
+text-align:center;
+padding:40px;
+z-index:2;
+}
+
+.logo{
+width:min(380px,75vw);
+margin-bottom:35px;
+animation:float 5s ease-in-out infinite;
+filter:drop-shadow(0 8px 16px rgba(0,0,0,.18));
+}
+
+h1{
+font-size:clamp(2rem,5vw,3.5rem);
+font-weight:800;
+margin-bottom:18px;
+}
+
+.subtitle{
+font-size:1.4rem;
+font-weight:700;
+color:#6C79C1;
+margin-bottom:20px;
+}
+
+.small{
+font-size:1.1rem;
+line-height:1.7;
+color:#555;
+}
+
+.background-notes{
+position:fixed;
+inset:0;
+pointer-events:none;
+}
+
+.note{
+position:absolute;
+opacity:.15;
+animation:drift linear infinite;
+}
+
+@keyframes drift{
+from{transform:translateY(110vh) rotate(0deg);}
+to{transform:translateY(-120vh) rotate(360deg);}
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
