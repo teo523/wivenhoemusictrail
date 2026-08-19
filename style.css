@@ -55,6 +55,45 @@ h1{
   color:#555;
 }
 
+.map-coming-soon{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  text-align:left;
+  max-width:620px;
+  margin:28px auto 0;
+  padding:18px 20px;
+  background:rgba(108,121,193,.09);
+  border:2px dashed rgba(108,121,193,.45);
+  border-radius:18px;
+}
+
+.map-icon{
+  flex:0 0 auto;
+  font-size:1.75rem;
+  line-height:1;
+  margin-top:2px;
+}
+
+.map-coming-soon h2{
+  font-size:clamp(1.15rem,3.8vw,1.45rem);
+  line-height:1.2;
+  color:#5966ae;
+  margin-bottom:7px;
+}
+
+.map-coming-soon p{
+  font-size:clamp(.96rem,3vw,1.05rem);
+  line-height:1.45;
+  color:#444;
+}
+
+.map-coming-soon .come-back{
+  margin-top:7px;
+  font-weight:800;
+  color:#5966ae;
+}
+
 .background-notes{
   position:fixed;
   inset:0;
@@ -94,6 +133,7 @@ h1{
     margin-bottom:12px;
   }
   .subtitle{margin-bottom:12px}
+  .map-coming-soon{margin-top:20px;padding:14px 16px}
 }
 
 @media (max-width:380px){
@@ -102,6 +142,7 @@ h1{
   h1{font-size:1.55rem}
   .subtitle{font-size:1.05rem}
   .small{font-size:.98rem}
+  .map-coming-soon{gap:10px;padding:14px;text-align:center;flex-direction:column;align-items:center}
 }
 
 @media (prefers-reduced-motion:reduce){
