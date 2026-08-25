@@ -142,13 +142,13 @@ export default function Page() {
   );
 
   return (
-    <div className="h-screen w-screen bg-zinc-950 text-white flex flex-col overflow-hidden">
+    <div className="timetable-page h-screen w-screen flex flex-col overflow-hidden">
 
       {/* =====================================================
           HEADER
       ====================================================== */}
 
-      <header className="shrink-0 px-2.5 py-1.5 border-b border-zinc-800 flex items-center justify-between gap-2 bg-zinc-950">
+      <header className="timetable-header shrink-0 px-3 py-2 flex items-center justify-between gap-2">
 
         <div className="flex items-center gap-2 min-w-0">
 
@@ -156,14 +156,14 @@ export default function Page() {
           <img
             src={`${basePath}/logo.png`}
             alt="Wivenhoe Music Trail goose logo"
-            className="h-13 w-13 rounded-full object-cover shrink-0 border border-white/10"
+            className="timetable-logo h-13 w-13 rounded-full object-cover shrink-0"
           />
 
           <div className="min-w-0">
 
             <div className="flex items-center gap-2">
 
-              <h1 className="font-bold text-sm sm:text-base leading-tight truncate">
+              <h1 className="timetable-title font-bold text-sm sm:text-base leading-tight truncate">
                 Wivenhoe Music Trail
               </h1>
 
@@ -175,7 +175,7 @@ export default function Page() {
 
             </div>
 
-            <p className="text-[10px] sm:text-xs text-zinc-400 truncate">
+            <p className="timetable-subtitle text-[10px] sm:text-xs truncate">
               Tap any event for details
             </p>
 
@@ -191,8 +191,8 @@ export default function Page() {
           }
           className={`shrink-0 text-[10px] sm:text-xs px-2.5 py-1.5 rounded-lg transition ${
             followNow
-              ? "bg-red-500"
-              : "bg-zinc-800 hover:bg-zinc-700"
+              ? "timetable-follow-active"
+              : "timetable-follow-inactive"
           }`}
         >
           {followNow
@@ -232,7 +232,7 @@ export default function Page() {
           ================================================== */}
 
           <aside
-            className="sticky left-0 z-40 shrink-0 bg-zinc-900 border-r border-zinc-800 shadow-xl"
+            className="timetable-sidebar sticky left-0 z-40 shrink-0 shadow-xl"
             style={{
               width: SIDEBAR_WIDTH,
             }}
@@ -241,12 +241,12 @@ export default function Page() {
             {/* TOP LEFT CORNER */}
 
             <div
-              className="border-b border-zinc-700 bg-zinc-950"
+              className="timetable-corner border-b"
               style={{
                 height: TIME_HEADER_HEIGHT,
               }}
             >
-              <div className="h-full flex items-center px-2 text-[9px] uppercase tracking-wider text-zinc-500">
+              <div className="timetable-muted h-full flex items-center px-2 text-[9px] uppercase tracking-wider">
                 Venues
               </div>
             </div>
@@ -256,7 +256,7 @@ export default function Page() {
             {venues.map((venue) => (
               <div
                 key={venue.name}
-                className="flex items-center px-2 border-b border-zinc-800"
+                className="timetable-venue-row flex items-center px-2 border-b"
                 style={{
                   height: rowHeight,
                 }}
@@ -298,7 +298,7 @@ export default function Page() {
             ================================================== */}
 
             <div
-              className="absolute top-0 left-0 right-0 bg-zinc-950 border-b border-zinc-700 z-20"
+              className="timetable-ruler absolute top-0 left-0 right-0 border-b z-20"
               style={{
                 height: TIME_HEADER_HEIGHT,
               }}
@@ -310,7 +310,7 @@ export default function Page() {
 
                 <div
                   key={`time-${hour}`}
-                  className="absolute top-0 bottom-0 border-l border-zinc-700"
+                  className="timetable-hour absolute top-0 bottom-0 border-l"
                   style={{
                     left:
                       hour *
@@ -319,7 +319,7 @@ export default function Page() {
                   }}
                 >
 
-                  <span className="absolute top-1 left-1 text-[9px] text-zinc-400 whitespace-nowrap">
+                  <span className="timetable-muted absolute top-1 left-1 text-[9px] whitespace-nowrap">
                     {String(hour).padStart(
                       2,
                       "0"
@@ -343,7 +343,7 @@ export default function Page() {
 
               <div
                 key={`grid-${hour}`}
-                className="absolute bottom-0 border-l border-zinc-800/80 pointer-events-none"
+                className="timetable-grid absolute bottom-0 border-l pointer-events-none"
                 style={{
                   top:
                     TIME_HEADER_HEIGHT,
@@ -366,7 +366,7 @@ export default function Page() {
 
                 <div
                   key={venue.name}
-                  className="absolute left-0 right-0 border-b border-zinc-800/80"
+                  className="timetable-row absolute left-0 right-0 border-b"
                   style={{
                     top:
                       TIME_HEADER_HEIGHT +
@@ -413,18 +413,18 @@ export default function Page() {
                             px-2
                             text-left
                             border
-                            border-white/10
+                            border-black/10
                             shadow-md
                             transition-all
                             cursor-pointer
                             focus:outline-none
                             focus:ring-2
-                            focus:ring-white/70
+                            focus:ring-[#5966ae]/70
                             hover:brightness-110
                             ${venue.color}
                             ${
                               isLive
-                                ? "opacity-100 ring-2 ring-white/20 shadow-lg"
+                                ? "opacity-100 ring-2 ring-[#5966ae]/30 shadow-lg"
                                 : "opacity-60 hover:opacity-95"
                             }
                           `}
@@ -514,7 +514,7 @@ export default function Page() {
             {now && (
 
               <div
-                className="absolute bottom-0 w-[2px] bg-red-500 z-30 pointer-events-none"
+                className="timetable-now-line absolute bottom-0 w-[2px] z-30 pointer-events-none"
                 style={{
                   top: 0,
                   left:
@@ -523,7 +523,7 @@ export default function Page() {
                 }}
               >
 
-                <div className="absolute top-[2px] -translate-x-1/2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full shadow-lg">
+                <div className="timetable-now-label absolute top-[2px] -translate-x-1/2 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full shadow-lg">
                   NOW
                 </div>
 
@@ -541,7 +541,7 @@ export default function Page() {
           FOOTER
       ====================================================== */}
 
-      <footer className="shrink-0 px-3 py-1.5 text-[10px] border-t border-zinc-800 flex justify-between text-zinc-400 bg-zinc-950">
+      <footer className="timetable-footer shrink-0 px-3 py-1.5 text-[10px] border-t flex justify-between">
 
         <span>
           {now
@@ -574,7 +574,7 @@ export default function Page() {
             fixed
             inset-0
             z-[100]
-            bg-black/60
+            bg-black/35
             backdrop-blur-sm
             flex
             items-end
@@ -593,9 +593,8 @@ export default function Page() {
               w-full
               sm:max-w-md
               max-h-[88vh]
-              bg-zinc-900
+              timetable-modal
               border
-              border-zinc-700
               rounded-t-2xl
               sm:rounded-2xl
               overflow-y-auto
@@ -616,7 +615,7 @@ export default function Page() {
                 h-28
                 sm:h-36
                 object-cover
-                bg-zinc-800
+                bg-[#eee7db]
               "
             />
 
@@ -626,7 +625,7 @@ export default function Page() {
 
               {/* VENUE */}
 
-              <div className="text-[10px] uppercase tracking-wider text-zinc-400">
+              <div className="timetable-muted text-[10px] uppercase tracking-wider">
                 {selected.venue}
               </div>
 
@@ -638,13 +637,13 @@ export default function Page() {
 
               {/* ARTIST */}
 
-              <div className="text-sm text-zinc-300 mt-0.5">
+              <div className="timetable-secondary text-sm mt-0.5">
                 {selected.artist}
               </div>
 
               {/* TIME */}
 
-              <div className="text-xs text-zinc-400 mt-1">
+              <div className="timetable-muted text-xs mt-1">
                 {formatTime(
                   selected.start
                 )}
@@ -659,7 +658,7 @@ export default function Page() {
 
               <div className="mt-3">
 
-                <div className="text-[10px] uppercase tracking-wider text-zinc-500 mb-0.5">
+                <div className="timetable-muted text-[10px] uppercase tracking-wider mb-0.5">
                   Location
                 </div>
 
@@ -674,8 +673,7 @@ export default function Page() {
                     items-start
                     gap-1.5
                     text-xs
-                    text-zinc-200
-                    hover:text-white
+                    timetable-link
                     transition
                   "
                 >
@@ -684,7 +682,7 @@ export default function Page() {
                     📍
                   </span>
 
-                  <span className="underline underline-offset-2 decoration-zinc-600">
+                  <span className="underline underline-offset-2 decoration-[#8e87b9]">
                     {
                       selected.address
                     }
@@ -696,7 +694,7 @@ export default function Page() {
 
               {/* DESCRIPTION */}
 
-              <p className="mt-3 text-xs sm:text-sm leading-5 text-zinc-300">
+              <p className="timetable-secondary mt-3 text-xs sm:text-sm leading-5">
                 {
                   selected.shortDescription
                 }
@@ -711,8 +709,7 @@ export default function Page() {
                   className="
                     flex-1
                     text-center
-                    bg-white
-                    text-zinc-950
+                    timetable-primary-button
                     font-semibold
                     text-sm
                     rounded-lg
@@ -731,8 +728,7 @@ export default function Page() {
                     px-3
                     py-2
                     rounded-lg
-                    bg-zinc-800
-                    hover:bg-zinc-700
+                    timetable-secondary-button
                     text-sm
                   "
                 >

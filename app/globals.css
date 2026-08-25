@@ -78,3 +78,63 @@ body{background:#09090b}
   .landing-timetable-card{gap:10px;padding:14px;text-align:center;flex-direction:column;align-items:center}
 }
 @media (prefers-reduced-motion:reduce){.landing-logo,.landing-note{animation:none}}
+
+/* =========================================================
+   TIMETABLE — MATCH LANDING PAGE
+========================================================= */
+.timetable-page{
+  font-family:'Nunito',sans-serif;
+  background:#faf7f1;
+  color:#292522;
+  background-image:
+    radial-gradient(circle at 16% 18%,rgba(232,116,90,.055) 0 3px,transparent 3px),
+    radial-gradient(circle at 83% 78%,rgba(108,121,193,.055) 0 2px,transparent 2px);
+}
+.timetable-header{
+  background:rgba(250,247,241,.96);
+  border-bottom:1px solid rgba(91,79,69,.15);
+  box-shadow:0 3px 14px rgba(69,55,42,.06);
+  backdrop-filter:blur(12px);
+}
+.timetable-logo{border:1px solid rgba(89,102,174,.16);box-shadow:0 3px 10px rgba(69,55,42,.08)}
+.timetable-title{color:#342e2a;letter-spacing:-.01em}
+.timetable-subtitle,.timetable-muted{color:#756d66}
+.timetable-secondary{color:#5e5751}
+.timetable-follow-inactive,.timetable-follow-active{
+  border:1px solid rgba(89,102,174,.18);font-weight:800;box-shadow:0 2px 8px rgba(69,55,42,.04)
+}
+.timetable-follow-inactive{background:#fff;color:#5966ae}
+.timetable-follow-inactive:hover{background:#f0edf8}
+.timetable-follow-active{background:#e8745a;color:#fff;border-color:#e8745a}
+.timetable-sidebar{background:#f7f0e7;border-right:1px solid rgba(91,79,69,.15)}
+.timetable-corner,.timetable-ruler{background:#efe7dc;border-color:rgba(91,79,69,.15)}
+.timetable-venue-row,.timetable-row{border-color:rgba(91,79,69,.11)}
+.timetable-venue-row:nth-child(even){background:rgba(255,255,255,.25)}
+.timetable-hour{border-color:rgba(91,79,69,.18)}
+.timetable-grid{border-color:rgba(91,79,69,.105)}
+.timetable-now-line,.timetable-now-label{background:#e8745a}
+.timetable-footer{background:#efe7dc;border-color:rgba(91,79,69,.15);color:#756d66}
+.timetable-modal{background:#fffaf4;border-color:rgba(91,79,69,.16);color:#292522;box-shadow:0 22px 70px rgba(62,49,39,.22)}
+.timetable-link{color:#5966ae;transition:color .18s ease}
+.timetable-link:hover{color:#474f91}
+.timetable-primary-button{background:#5966ae;color:#fff;box-shadow:0 5px 14px rgba(89,102,174,.18)}
+.timetable-primary-button:hover{background:#4f5ca6}
+.timetable-secondary-button{background:#efe7dc;color:#4e4741}
+.timetable-secondary-button:hover{background:#e6dace}
+
+/* Poster-inspired event blocks: retain venue differentiation but soften them */
+.timetable-page .bg-pink-500{background:#e985a5}
+.timetable-page .bg-green-500{background:#79a98a}
+.timetable-page .bg-orange-500{background:#e59a55}
+.timetable-page .bg-blue-500{background:#6f8fca}
+.timetable-page .bg-purple-500{background:#8a78b7}
+.timetable-page .bg-yellow-500{background:#d4ad45;color:#342e2a}
+.timetable-page .bg-red-300{background:#e99b87;color:#342e2a}
+.timetable-page .bg-yellow-700{background:#b9973d}
+.timetable-page .bg-red-900{background:#a9564a}
+.timetable-page .bg-green-900{background:#507760}
+.timetable-page .bg-blue-900{background:#526b9b}
+
+@media (max-width:640px){
+  .timetable-header{padding-top:7px;padding-bottom:7px}
+}
