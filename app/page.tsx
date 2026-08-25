@@ -14,26 +14,28 @@ export default function HomePage() {
           <p className="landing-description">
             Live music, open studios, workshops, DJ sets and more, popping up in venues and unexpected spaces across town.
           </p>
-          <div className="landing-event-tags" aria-label="Event highlights">
-            <span>Live music</span>
-            <span>Open studios</span>
-            <span>Workshops</span>
-            <span>DJ sets</span>
-          </div>
         </section>
 
         <section className="landing-timetable-card" aria-label="Event timetable">
-          <div className="landing-map-icon" aria-hidden="true">🎵</div>
+          <div className="landing-timetable-accent" aria-hidden="true">♪</div>
           <div className="landing-timetable-copy">
-            <h2>Explore the full programme</h2>
+            <p className="landing-timetable-kicker">Plan your trail</p>
+            <h2>The full timetable is here</h2>
             <p>
-              See what is happening throughout the day and plan your own trail around Wivenhoe.
+              Explore everything happening across Wivenhoe and build your own route through the day.
             </p>
             <Link href="/timetable/" className="landing-timetable-button">
               View the timetable <span aria-hidden="true">→</span>
             </Link>
           </div>
         </section>
+
+        <div className="landing-event-tags" aria-label="Event highlights">
+          <span>Live music</span>
+          <span>Open studios</span>
+          <span>Workshops</span>
+          <span>DJ sets</span>
+        </div>
       </main>
     </div>
   );

@@ -6,76 +6,109 @@ body{background:#09090b}
 .timeline-scroll{-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 
 .landing-page{
+  --paper:#fff4df;
+  --ink:#25213a;
+  --violet:#6456a8;
+  --violet-dark:#51458f;
+  --coral:#ef7766;
+  --sun:#f2bd57;
+  --sky:#7db8ca;
   font-family:'Nunito',sans-serif;
-  background:#faf7f1;
+  background:var(--paper);
   background-image:
-    radial-gradient(circle at 20% 20%,rgba(108,121,193,.06) 0 3px,transparent 3px),
-    radial-gradient(circle at 80% 80%,rgba(108,121,193,.05) 0 2px,transparent 2px);
-  color:#222;
+    radial-gradient(circle at 16% 18%,rgba(239,119,102,.12) 0 3px,transparent 3px),
+    radial-gradient(circle at 83% 74%,rgba(125,184,202,.13) 0 3px,transparent 3px),
+    radial-gradient(circle at 72% 20%,rgba(242,189,87,.10) 0 2px,transparent 2px);
+  color:var(--ink);
   min-height:100svh;
   display:flex;
   justify-content:center;
   align-items:center;
   overflow-x:hidden;
   overflow-y:auto;
-  padding:max(28px,env(safe-area-inset-top)) 16px max(36px,env(safe-area-inset-bottom));
+  padding:max(26px,env(safe-area-inset-top)) 16px max(34px,env(safe-area-inset-bottom));
 }
 
-.landing-container{width:min(92%,760px);text-align:center;z-index:2}
+.landing-container{width:min(92%,790px);text-align:center;z-index:2}
 .landing-logo{
-  display:block;width:min(330px,68vw);max-height:37svh;object-fit:contain;
-  margin:0 auto 24px;animation:landing-float 5s ease-in-out infinite;
-  filter:drop-shadow(0 8px 16px rgba(0,0,0,.18));
+  display:block;width:min(315px,66vw);max-height:35svh;object-fit:contain;
+  margin:0 auto 20px;animation:landing-float 5s ease-in-out infinite;
+  filter:drop-shadow(0 8px 16px rgba(67,54,100,.16));
 }
-.landing-intro{max-width:690px;margin:0 auto}
+.landing-intro{max-width:700px;margin:0 auto}
 .landing-eyebrow{
-  display:inline-block;font-size:clamp(.82rem,2.7vw,.98rem);line-height:1;font-weight:800;
-  letter-spacing:.08em;text-transform:uppercase;color:#5966ae;background:rgba(108,121,193,.10);
-  border-radius:999px;padding:9px 14px;margin-bottom:15px;
+  display:inline-block;font-size:clamp(.82rem,2.7vw,.98rem);line-height:1;font-weight:900;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--violet-dark);background:rgba(242,189,87,.42);
+  border:1px solid rgba(242,189,87,.72);border-radius:999px;padding:9px 14px;margin-bottom:14px;
 }
-.landing-title{font-size:clamp(1.85rem,5.1vw,3.45rem);line-height:1.06;font-weight:800;margin:0 0 14px}
-.landing-lead{font-size:clamp(1.25rem,4vw,1.65rem);line-height:1.25;font-weight:800;color:#6c79c1;margin:0 0 10px}
-.landing-description{max-width:640px;margin:0 auto;font-size:clamp(1rem,3.2vw,1.13rem);line-height:1.55;color:#4b4b4b}
+.landing-lead{font-size:clamp(1.25rem,4vw,1.67rem);line-height:1.25;font-weight:900;color:var(--coral);margin:0 0 9px}
+.landing-description{max-width:650px;margin:0 auto;font-size:clamp(1rem,3.2vw,1.13rem);line-height:1.52;color:#514b5e}
+
+/* Timetable is the main visual call-to-action on the landing page. */
+.landing-timetable-card{
+  position:relative;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;text-align:left;
+  max-width:700px;margin:23px auto 0;padding:22px 24px 22px 22px;
+  background:#fff;border:2px solid rgba(100,86,168,.24);border-radius:24px;
+  box-shadow:0 14px 32px rgba(67,54,100,.11), 7px 7px 0 rgba(239,119,102,.16);
+  overflow:hidden;
+}
+.landing-timetable-card::after{
+  content:"";position:absolute;width:105px;height:105px;border-radius:50%;right:-43px;top:-48px;
+  background:rgba(242,189,87,.36);pointer-events:none;
+}
+.landing-timetable-accent{
+  position:relative;z-index:1;width:64px;height:64px;display:grid;place-items:center;
+  border-radius:19px;background:var(--violet);color:#fff;font-size:2.4rem;font-weight:900;line-height:1;
+  box-shadow:5px 5px 0 rgba(125,184,202,.34);transform:rotate(-3deg);
+}
+.landing-timetable-copy{position:relative;z-index:1}
+.landing-timetable-kicker{
+  margin:0 0 4px!important;font-size:.77rem!important;line-height:1!important;font-weight:900!important;
+  letter-spacing:.10em;text-transform:uppercase;color:var(--coral)!important;
+}
+.landing-timetable-card h2{font-size:clamp(1.25rem,4vw,1.65rem);line-height:1.12;color:var(--violet-dark);margin:0 0 6px;font-weight:900}
+.landing-timetable-card p{font-size:clamp(.95rem,3vw,1.04rem);line-height:1.42;color:#4e485a;margin:0}
+.landing-timetable-button{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-top:13px;padding:12px 17px;border-radius:999px;
+  background:var(--coral);color:#fff;text-decoration:none;font-weight:900;font-size:1rem;line-height:1;
+  box-shadow:0 6px 0 #d85f51;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.landing-timetable-button:hover{background:#e96b5b;transform:translateY(-2px);box-shadow:0 8px 0 #d85f51}
+.landing-timetable-button:active{transform:translateY(2px);box-shadow:0 3px 0 #d85f51}
+
 .landing-event-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:18px auto 0}
 .landing-event-tags span{
-  font-size:.9rem;line-height:1;font-weight:700;color:#4f5ca6;background:#fff;
-  border:1px solid rgba(108,121,193,.22);border-radius:999px;padding:8px 11px;
-  box-shadow:0 3px 9px rgba(0,0,0,.035);
+  font-size:.9rem;line-height:1;font-weight:800;color:var(--violet-dark);background:rgba(255,255,255,.72);
+  border:1px solid rgba(100,86,168,.18);border-radius:999px;padding:8px 11px;
+  box-shadow:0 3px 9px rgba(67,54,100,.04);
 }
-.landing-timetable-card{
-  display:flex;gap:14px;align-items:flex-start;text-align:left;max-width:650px;margin:26px auto 0;
-  padding:18px 20px;background:rgba(108,121,193,.09);border:2px dashed rgba(108,121,193,.42);
-  border-radius:18px;
-}
-.landing-map-icon{flex:0 0 auto;font-size:1.75rem;line-height:1;margin-top:2px}
-.landing-timetable-card h2{font-size:clamp(1.1rem,3.6vw,1.4rem);line-height:1.2;color:#5966ae;margin:0 0 7px}
-.landing-timetable-card p{font-size:clamp(.95rem,3vw,1.04rem);line-height:1.45;color:#444;margin:0}
-.landing-timetable-button{
-  display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 14px;border-radius:999px;
-  background:#5966ae;color:#fff;text-decoration:none;font-weight:800;font-size:.96rem;line-height:1;
-  box-shadow:0 5px 12px rgba(89,102,174,.18);transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
-}
-.landing-timetable-button:hover{background:#4f5ca6;transform:translateY(-1px);box-shadow:0 7px 16px rgba(89,102,174,.24)}
+.landing-event-tags span:nth-child(2){color:#a84f43;border-color:rgba(239,119,102,.27);background:rgba(239,119,102,.08)}
+.landing-event-tags span:nth-child(3){color:#746023;border-color:rgba(242,189,87,.42);background:rgba(242,189,87,.14)}
+.landing-event-tags span:nth-child(4){color:#3f7585;border-color:rgba(125,184,202,.36);background:rgba(125,184,202,.12)}
+
 .landing-background-notes{position:fixed;inset:0;pointer-events:none;overflow:hidden}
-.landing-note{position:absolute;opacity:.15;animation:landing-drift linear infinite}
+.landing-note{position:absolute;opacity:.17;animation:landing-drift linear infinite}
 @keyframes landing-drift{from{transform:translateY(110vh) rotate(0deg)}to{transform:translateY(-120vh) rotate(360deg)}}
 @keyframes landing-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 @media (max-height:760px){
   .landing-page{align-items:flex-start;padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(24px,env(safe-area-inset-bottom))}
-  .landing-logo{width:min(260px,58vw);max-height:31svh;margin-bottom:15px}
-  .landing-eyebrow{margin-bottom:11px;padding:7px 11px}
-  .landing-title{font-size:clamp(1.55rem,6vw,2.3rem);margin-bottom:9px}
-  .landing-lead{margin-bottom:7px}
-  .landing-event-tags{margin-top:13px}
-  .landing-timetable-card{margin-top:18px;padding:14px 16px}
+  .landing-logo{width:min(250px,56vw);max-height:29svh;margin-bottom:13px}
+  .landing-eyebrow{margin-bottom:10px;padding:7px 11px}
+  .landing-lead{margin-bottom:6px}
+  .landing-timetable-card{margin-top:16px;padding:16px 18px}
+  .landing-event-tags{margin-top:14px}
+}
+@media (max-width:560px){
+  .landing-timetable-card{grid-template-columns:1fr;text-align:center;justify-items:center;gap:12px;padding:18px 17px 20px}
+  .landing-timetable-accent{width:54px;height:54px;border-radius:16px;font-size:2rem}
 }
 @media (max-width:480px){.landing-event-tags{gap:7px}.landing-event-tags span{font-size:.84rem;padding:7px 9px}}
 @media (max-width:380px){
   .landing-page{padding-left:12px;padding-right:12px}
-  .landing-logo{width:min(235px,63vw)}
-  .landing-title{font-size:1.58rem}.landing-lead{font-size:1.18rem}.landing-description{font-size:.97rem}
-  .landing-timetable-card{gap:10px;padding:14px;text-align:center;flex-direction:column;align-items:center}
+  .landing-logo{width:min(230px,62vw)}
+  .landing-lead{font-size:1.18rem}.landing-description{font-size:.97rem}
+  .landing-timetable-card{margin-top:15px}
 }
 @media (prefers-reduced-motion:reduce){.landing-logo,.landing-note{animation:none}}
 
