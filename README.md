@@ -1,6 +1,12 @@
-# Wivenhoe Music Trail Timeline
+# Wivenhoe Music Trail
 
-A static Next.js festival timetable designed for GitHub Pages.
+Unified landing website and interactive timetable.
+
+## Repository
+
+This project is configured for the GitHub repository `wivenhoemusictrail`.
+
+The live site uses the custom domain `wivenhoemusictrail.com`, so the application is intentionally served from the site root (`/`) rather than from `/wivenhoemusictrail/`. The repository name therefore does not need to be used as a Next.js `basePath`.
 
 ## Run locally
 
@@ -9,20 +15,17 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000
+Open `http://localhost:3000`. The timetable is at `http://localhost:3000/timetable/`.
 
-## Artist images
+## Deploy to GitHub Pages
 
-Replace the placeholder SVG files in `public/artists/` with your real artist images. If you change file extensions, update `app/data.ts` accordingly.
+1. Push this project to `teo523/wivenhoemusictrail`.
+2. In GitHub, open **Settings → Pages**.
+3. Set **Source** to **GitHub Actions**.
+4. Push to `main`; `.github/workflows/deploy.yml` builds and deploys the static site.
 
-Replace `public/logo.svg` with your logo, or update the logo filename in `app/page.tsx`.
+The `public/CNAME` file contains `wivenhoemusictrail.com`.
 
-## GitHub Pages
+## Important
 
-The repository name is assumed to be `wivenhoe-music-trail`. If yours differs, update `repoName` in:
-
-- `next.config.ts`
-- `app/page.tsx`
-- `app/events/[slug]/page.tsx`
-
-Then push to `main` and select **Settings → Pages → Source: GitHub Actions**.
+Do not commit `node_modules`, `.next`, `out`, or TypeScript build-cache files. They are excluded by `.gitignore`.
