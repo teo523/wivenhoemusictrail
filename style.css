@@ -1,0 +1,204 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{min-height:100%}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:#faf7f1;
+  background-image:
+    radial-gradient(circle at 20% 20%,rgba(108,121,193,.06) 0 3px,transparent 3px),
+    radial-gradient(circle at 80% 80%,rgba(108,121,193,.05) 0 2px,transparent 2px);
+  color:#222;
+  min-height:100svh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow-x:hidden;
+  overflow-y:auto;
+  padding:max(28px,env(safe-area-inset-top)) 16px max(36px,env(safe-area-inset-bottom));
+}
+
+.container{
+  width:min(92%,760px);
+  text-align:center;
+  z-index:2;
+}
+
+.logo{
+  display:block;
+  width:min(330px,68vw);
+  max-height:37svh;
+  object-fit:contain;
+  margin:0 auto 24px;
+  animation:float 5s ease-in-out infinite;
+  filter:drop-shadow(0 8px 16px rgba(0,0,0,.18));
+}
+
+.intro{
+  max-width:690px;
+  margin:0 auto;
+}
+
+.eyebrow{
+  display:inline-block;
+  font-size:clamp(.82rem,2.7vw,.98rem);
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#5966ae;
+  background:rgba(108,121,193,.10);
+  border-radius:999px;
+  padding:9px 14px;
+  margin-bottom:15px;
+}
+
+h1{
+  font-size:clamp(1.85rem,5.1vw,3.45rem);
+  line-height:1.06;
+  font-weight:800;
+  margin-bottom:14px;
+}
+
+.lead{
+  font-size:clamp(1.25rem,4vw,1.65rem);
+  line-height:1.25;
+  font-weight:800;
+  color:#6c79c1;
+  margin-bottom:10px;
+}
+
+.description{
+  max-width:640px;
+  margin:0 auto;
+  font-size:clamp(1rem,3.2vw,1.13rem);
+  line-height:1.55;
+  color:#4b4b4b;
+}
+
+.event-tags{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin:18px auto 0;
+}
+
+.event-tags span{
+  font-size:.9rem;
+  line-height:1;
+  font-weight:700;
+  color:#4f5ca6;
+  background:#fff;
+  border:1px solid rgba(108,121,193,.22);
+  border-radius:999px;
+  padding:8px 11px;
+  box-shadow:0 3px 9px rgba(0,0,0,.035);
+}
+
+.map-coming-soon{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  text-align:left;
+  max-width:650px;
+  margin:26px auto 0;
+  padding:18px 20px;
+  background:rgba(108,121,193,.09);
+  border:2px dashed rgba(108,121,193,.42);
+  border-radius:18px;
+}
+
+.map-icon{
+  flex:0 0 auto;
+  font-size:1.75rem;
+  line-height:1;
+  margin-top:2px;
+}
+
+.map-coming-soon h2{
+  font-size:clamp(1.1rem,3.6vw,1.4rem);
+  line-height:1.2;
+  color:#5966ae;
+  margin-bottom:7px;
+}
+
+.map-coming-soon p{
+  font-size:clamp(.95rem,3vw,1.04rem);
+  line-height:1.45;
+  color:#444;
+}
+
+.map-coming-soon .come-back{
+  margin-top:7px;
+  font-weight:800;
+  color:#5966ae;
+}
+
+.background-notes{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.note{
+  position:absolute;
+  opacity:.15;
+  animation:drift linear infinite;
+}
+
+@keyframes drift{
+  from{transform:translateY(110vh) rotate(0deg)}
+  to{transform:translateY(-120vh) rotate(360deg)}
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+@media (max-height:760px){
+  body{
+    align-items:flex-start;
+    padding-top:max(18px,env(safe-area-inset-top));
+    padding-bottom:max(24px,env(safe-area-inset-bottom));
+  }
+  .logo{
+    width:min(260px,58vw);
+    max-height:31svh;
+    margin-bottom:15px;
+  }
+  .eyebrow{margin-bottom:11px;padding:7px 11px}
+  h1{
+    font-size:clamp(1.55rem,6vw,2.3rem);
+    margin-bottom:9px;
+  }
+  .lead{margin-bottom:7px}
+  .event-tags{margin-top:13px}
+  .map-coming-soon{margin-top:18px;padding:14px 16px}
+}
+
+@media (max-width:480px){
+  .event-tags{gap:7px}
+  .event-tags span{font-size:.84rem;padding:7px 9px}
+}
+
+@media (max-width:380px){
+  body{padding-left:12px;padding-right:12px}
+  .logo{width:min(235px,63vw)}
+  h1{font-size:1.58rem}
+  .lead{font-size:1.18rem}
+  .description{font-size:.97rem}
+  .map-coming-soon{
+    gap:10px;
+    padding:14px;
+    text-align:center;
+    flex-direction:column;
+    align-items:center;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .logo,.note{animation:none}
+}
