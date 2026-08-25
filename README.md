@@ -1,6 +1,6 @@
-# Wivenhoe Music Trail
+# Wivenhoe Music Trail 
 
-Unified landing website + interactive timetable for the GitHub repository `teo523/wivenhoemusictrail`.
+Unified landing website + interactive timetable for the GitHub repository `teo523/wivenhoemusictrail`
 
 This version uses **no GitHub Actions**. GitHub Pages serves the generated static site from the `docs/` folder on the `main` branch.
 
