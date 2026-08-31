@@ -55,6 +55,18 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
+      "page": "/artists",
+      "regex": "^/artists(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/artists(?:/)?$"
+    },
+    {
+      "page": "/map",
+      "regex": "^/map(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/map(?:/)?$"
+    },
+    {
       "page": "/timetable",
       "regex": "^/timetable(?:/)?$",
       "routeKeys": {},

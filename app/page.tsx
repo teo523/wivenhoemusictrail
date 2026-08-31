@@ -16,17 +16,37 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section className="landing-timetable-card" aria-label="Event timetable">
-          <div className="landing-timetable-accent" aria-hidden="true">♪</div>
-          <div className="landing-timetable-copy">
+        <section className="landing-timetable-card landing-explore-card" aria-label="Explore the Music Trail">
+          <div className="landing-timetable-copy landing-explore-copy">
             <p className="landing-timetable-kicker">Plan your trail</p>
-            <h2>The full timetable is here</h2>
+            <h2>Explore the Music Trail your way</h2>
             <p>
-              Explore everything happening across Wivenhoe and build your own route through the day.
+              Follow the day live, find events around Wivenhoe, or browse every artist and performance.
             </p>
-            <Link href="/timetable/" className="landing-timetable-button">
-              View the timetable <span aria-hidden="true">→</span>
-            </Link>
+
+            <div className="landing-view-grid" aria-label="Choose a view">
+              <Link href="/timetable/" className="landing-view-tile landing-view-timeline">
+                <span className="landing-view-icon" aria-hidden="true">▥</span>
+                <strong>Timeline</strong>
+                <small>What&apos;s happening when</small>
+              </Link>
+
+              <div
+                className="landing-view-tile landing-view-map landing-view-disabled"
+                aria-disabled="true"
+              >
+                <span className="landing-view-badge">Coming soon</span>
+                <span className="landing-view-icon" aria-hidden="true">⌖</span>
+                <strong>Map</strong>
+                <small>Find venues around town</small>
+              </div>
+
+              <Link href="/artists/" className="landing-view-tile landing-view-artists">
+                <span className="landing-view-icon" aria-hidden="true">♫</span>
+                <strong>Artists</strong>
+                <small>Browse every event</small>
+              </Link>
+            </div>
           </div>
         </section>
 

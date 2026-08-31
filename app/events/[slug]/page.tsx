@@ -1,6 +1,4 @@
-import { allEvents } from "../../data";
-
-const basePath = "";
+import { artistEvents, locationById, timelineRows } from "../../data";
 
 function formatTime(minutes: number) {
   const h = Math.floor(minutes / 60);
@@ -9,32 +7,27 @@ function formatTime(minutes: number) {
 }
 
 export function generateStaticParams() {
-  return allEvents.map((event) => ({ slug: event.slug }));
+  return artistEvents.map((event) => ({ slug: event.slug }));
 }
 
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const event = allEvents.find((item) => item.slug === slug);
+  const event = artistEvents.find((item) => item.slug === slug);
+  if (!event) return <main className="min-h-screen bg-zinc-950 text-white p-8">Event not found.</main>;
 
-  if (!event) {
-    return <main className="min-h-screen bg-zinc-950 text-white p-8">Event not found.</main>;
-  }
+  const location = locationById[event.locationId];
+  const row = timelineRows.find((candidate) => candidate.events.some((item) => item.id === event.timelineGroupId));
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white">
       <div className="max-w-3xl mx-auto p-5 sm:p-8">
-        <a href={`${basePath}/timetable/`} className="text-sm text-zinc-400 hover:text-white">← Back to timetable</a>
-        <img
-          src={`${basePath}${event.image}`}
-          alt={event.artist}
-          className="w-full h-64 sm:h-80 object-cover rounded-3xl mt-5 bg-zinc-800"
-        />
-        <div className="mt-6 text-sm uppercase tracking-wider text-zinc-400">{event.venue}</div>
+        <a href="/artists/" className="text-sm text-zinc-400 hover:text-white">← Back to artists</a>
+        <img src={event.image} alt={event.artist} className="w-full h-64 sm:h-80 object-cover rounded-3xl mt-5 bg-zinc-800" />
+        <div className="mt-6 text-sm uppercase tracking-wider text-zinc-400">{row?.name ?? "Wivenhoe Music Trail"}</div>
         <h1 className="text-4xl font-bold mt-2">{event.title}</h1>
         <div className="text-xl text-zinc-300 mt-2">{event.artist}</div>
-        <div className="mt-3 text-zinc-400">
-          {formatTime(event.start)}–{formatTime(event.start + event.duration)}
-        </div>
+        <div className="mt-3 text-zinc-400">{formatTime(event.start)}–{formatTime(event.start + event.duration)}</div>
+        {location && <a href={location.mapsUrl} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-zinc-300 underline underline-offset-4">📍 {location.address}</a>}
         <p className="mt-7 text-lg leading-8 text-zinc-300">{event.description}</p>
       </div>
     </main>

@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { venues, type EventItem } from "../data";
+import { venues, artistEventBySlug, locationById, type TimelineEvent } from "../data";
 
 const DEFAULT_ROW_HEIGHT = 54;
 const EVENT_HEIGHT = 38;
@@ -22,13 +23,11 @@ export default function Page() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const [now, setNow] = useState<Date | null>(null);
-  const [followNow, setFollowNow] = useState(false);
-
   const [rowHeight, setRowHeight] =
     useState(DEFAULT_ROW_HEIGHT);
 
   const [selected, setSelected] = useState<
-    (EventItem & { venue: string }) | null
+    (TimelineEvent & { venue: string }) | null
   >(null);
 
   // =========================================================
@@ -109,27 +108,6 @@ export default function Page() {
   }, []);
 
   // =========================================================
-  // FOLLOW NOW
-  // =========================================================
-
-  useEffect(() => {
-    if (!followNow || !now || !scrollRef.current) {
-      return;
-    }
-
-    const scroller = scrollRef.current;
-
-    scroller.scrollTo({
-      left: Math.max(
-        0,
-        nowMinutes * TIME_SCALE -
-          scroller.clientWidth / 2
-      ),
-      behavior: "smooth",
-    });
-  }, [followNow, nowMinutes, now]);
-
-  // =========================================================
   // ADAPT EVENT HEIGHT TO ROW HEIGHT
   // =========================================================
 
@@ -183,22 +161,11 @@ export default function Page() {
 
         </div>
 
-        {/* FOLLOW NOW BUTTON */}
-
-        <button
-          onClick={() =>
-            setFollowNow((value) => !value)
-          }
-          className={`shrink-0 text-[10px] sm:text-xs px-2.5 py-1.5 rounded-lg transition ${
-            followNow
-              ? "timetable-follow-active"
-              : "timetable-follow-inactive"
-          }`}
-        >
-          {followNow
-            ? "Following NOW"
-            : "Free Scroll"}
-        </button>
+        {/* VIEW TABS */}
+        <nav className="browse-nav" aria-label="Trail views">
+          <Link href="/timetable/" className="is-active">Timeline</Link>
+          <Link href="/artists/">Artists</Link>
+        </nav>
 
       </header>
 
@@ -393,7 +360,7 @@ export default function Page() {
 
                         <button
                           key={
-                            event.slug
+                            event.id
                           }
                           type="button"
                           aria-label={`More information about ${event.title}`}
@@ -555,195 +522,57 @@ export default function Page() {
             : "--:--"}
         </span>
 
-        <span>
-          {followNow
-            ? "Auto-follow ON"
-            : "Swipe / scroll · tap events"}
-        </span>
+        <span>Swipe / scroll · tap events</span>
 
       </footer>
 
       {/* =====================================================
-          EVENT DETAIL CARD
+          TIMELINE DETAIL CARD
       ====================================================== */}
 
-      {selected && (
+      {selected && (() => {
+        const related = selected.artistEventIds.map((slug) => artistEventBySlug[slug]).filter(Boolean);
+        const single = related.length === 1 ? related[0] : null;
+        const singleLocation = single ? locationById[single.locationId] : null;
 
-        <div
-          className="
-            fixed
-            inset-0
-            z-[100]
-            bg-black/35
-            backdrop-blur-sm
-            flex
-            items-end
-            sm:items-center
-            justify-center
-            p-0
-            sm:p-4
-          "
-          onClick={() =>
-            setSelected(null)
-          }
-        >
-
-          <div
-            className="
-              w-full
-              sm:max-w-md
-              max-h-[88vh]
-              timetable-modal
-              border
-              rounded-t-2xl
-              sm:rounded-2xl
-              overflow-y-auto
-              shadow-2xl
-            "
-            onClick={(event) =>
-              event.stopPropagation()
-            }
-          >
-
-            {/* IMAGE */}
-
-            <img
-              src={`${basePath}${selected.image}`}
-              alt={selected.artist}
-              className="
-                w-full
-                h-28
-                sm:h-36
-                object-cover
-                bg-[#eee7db]
-              "
-            />
-
-            {/* CONTENT */}
-
-            <div className="p-4">
-
-              {/* VENUE */}
-
-              <div className="timetable-muted text-[10px] uppercase tracking-wider">
-                {selected.venue}
-              </div>
-
-              {/* TITLE */}
-
-              <h2 className="text-lg sm:text-xl font-bold mt-0.5 leading-tight">
-                {selected.title}
-              </h2>
-
-              {/* ARTIST */}
-
-              <div className="timetable-secondary text-sm mt-0.5">
-                {selected.artist}
-              </div>
-
-              {/* TIME */}
-
-              <div className="timetable-muted text-xs mt-1">
-                {formatTime(
-                  selected.start
-                )}
-                {" – "}
-                {formatTime(
-                  selected.start +
-                    selected.duration
-                )}
-              </div>
-
-              {/* LOCATION */}
-
-              <div className="mt-3">
-
-                <div className="timetable-muted text-[10px] uppercase tracking-wider mb-0.5">
-                  Location
+        return (
+          <div className="fixed inset-0 z-[100] bg-black/35 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4" onClick={() => setSelected(null)}>
+            <div className="w-full sm:max-w-md max-h-[88vh] timetable-modal border rounded-t-2xl sm:rounded-2xl overflow-y-auto shadow-2xl" onClick={(event) => event.stopPropagation()}>
+              {single ? (
+                <>
+                  <img src={`${basePath}${single.image}`} alt={single.artist} className="w-full h-28 sm:h-36 object-cover bg-[#eee7db]" />
+                  <div className="p-4">
+                    <div className="timetable-muted text-[10px] uppercase tracking-wider">{selected.venue}</div>
+                    <h2 className="text-lg sm:text-xl font-bold mt-0.5 leading-tight">{single.title}</h2>
+                    <div className="timetable-secondary text-sm mt-0.5">{single.artist}</div>
+                    <div className="timetable-muted text-xs mt-1">{formatTime(single.start)} – {formatTime(single.start + single.duration)}</div>
+                    {singleLocation && <div className="mt-3"><div className="timetable-muted text-[10px] uppercase tracking-wider mb-0.5">Location</div><a href={singleLocation.mapsUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-1.5 text-xs timetable-link transition"><span aria-hidden="true">📍</span><span className="underline underline-offset-2 decoration-[#8e87b9]">{singleLocation.address}</span></a></div>}
+                    <p className="timetable-secondary mt-3 text-xs sm:text-sm leading-5">{single.shortDescription}</p>
+                    <div className="mt-4 flex gap-2"><a href={`${basePath}/events/${single.slug}/`} className="flex-1 text-center timetable-primary-button font-semibold text-sm rounded-lg px-3 py-2">More info</a><button onClick={() => setSelected(null)} className="px-3 py-2 rounded-lg timetable-secondary-button text-sm">Close</button></div>
+                  </div>
+                </>
+              ) : (
+                <div className="p-4">
+                  <div className="timetable-muted text-[10px] uppercase tracking-wider">{selected.venue}</div>
+                  <h2 className="text-xl font-bold mt-1">{selected.title}</h2>
+                  <div className="timetable-muted text-xs mt-1">{formatTime(selected.start)} – {formatTime(selected.start + selected.duration)}</div>
+                  {selected.shortDescription && <p className="timetable-secondary mt-3 text-sm">{selected.shortDescription}</p>}
+                  <div className="mt-4 space-y-2">
+                    {related.map((item) => {
+                      const location = locationById[item.locationId];
+                      return <a href={`${basePath}/events/${item.slug}/`} key={item.slug} className="flex gap-3 items-center rounded-xl border border-black/10 p-2 hover:bg-black/5 transition">
+                        <img src={`${basePath}${item.image}`} alt="" className="h-14 w-14 rounded-lg object-cover bg-[#eee7db] shrink-0" />
+                        <div className="min-w-0"><div className="font-semibold text-sm">{item.artist}</div><div className="timetable-muted text-xs">{formatTime(item.start)}{location ? ` · ${location.address}` : ""}</div><div className="timetable-secondary text-xs mt-0.5 line-clamp-1">{item.shortDescription}</div></div>
+                      </a>;
+                    })}
+                  </div>
+                  <button onClick={() => setSelected(null)} className="mt-4 w-full px-3 py-2 rounded-lg timetable-secondary-button text-sm">Close</button>
                 </div>
-
-                <a
-                  href={
-                    selected.mapsUrl
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    flex
-                    items-start
-                    gap-1.5
-                    text-xs
-                    timetable-link
-                    transition
-                  "
-                >
-
-                  <span aria-hidden="true">
-                    📍
-                  </span>
-
-                  <span className="underline underline-offset-2 decoration-[#8e87b9]">
-                    {
-                      selected.address
-                    }
-                  </span>
-
-                </a>
-
-              </div>
-
-              {/* DESCRIPTION */}
-
-              <p className="timetable-secondary mt-3 text-xs sm:text-sm leading-5">
-                {
-                  selected.shortDescription
-                }
-              </p>
-
-              {/* BUTTONS */}
-
-              <div className="mt-4 flex gap-2">
-
-                <a
-                  href={`${basePath}/events/${selected.slug}/`}
-                  className="
-                    flex-1
-                    text-center
-                    timetable-primary-button
-                    font-semibold
-                    text-sm
-                    rounded-lg
-                    px-3
-                    py-2
-                  "
-                >
-                  More info
-                </a>
-
-                <button
-                  onClick={() =>
-                    setSelected(null)
-                  }
-                  className="
-                    px-3
-                    py-2
-                    rounded-lg
-                    timetable-secondary-button
-                    text-sm
-                  "
-                >
-                  Close
-                </button>
-
-              </div>
-
+              )}
             </div>
-
           </div>
-
-        </div>
-
-      )}
+        );
+      })()}
 
     </div>
   );
