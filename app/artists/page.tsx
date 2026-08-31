@@ -34,7 +34,7 @@ export default function ArtistsPage() {
         <section className="browse-intro">
           <p className="browse-kicker">Saturday 12 September 2026</p>
           <h1>Artists & events</h1>
-          <p>Every individual artist or activity has its own card, even when several of them share one timeline block or one venue.</p>
+          <p>Check who, where, and when is happening!</p>
         </section>
 
         <section className="artist-card-grid" aria-label="All Music Trail artists and events">
