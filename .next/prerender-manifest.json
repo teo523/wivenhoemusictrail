@@ -74,7 +74,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/": {
+    "/timetable": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -87,8 +87,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
+      "srcRoute": "/timetable",
+      "dataRoute": "/timetable.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -746,7 +746,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/timetable": {
+    "/": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -759,8 +759,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/timetable",
-      "dataRoute": "/timetable.rsc",
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
