@@ -1,8 +1,8 @@
 {
   "/_not-found/page": "/_not-found",
   "/artists/page": "/artists",
-  "/page": "/",
   "/map/page": "/map",
-  "/timetable/page": "/timetable",
-  "/events/[slug]/page": "/events/[slug]"
+  "/page": "/",
+  "/events/[slug]/page": "/events/[slug]",
+  "/timetable/page": "/timetable"
 }
