@@ -23,14 +23,6 @@
       "static/chunks/619-ba102abea3e3d0e4.js",
       "static/chunks/app/artists/page-c49f93ff3fa72335.js"
     ],
-    "/map/page": [
-      "static/chunks/webpack-74c939c87fa0092a.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-f9c534389f1b5ee3.js",
-      "static/chunks/main-app-946ec161fab91dc2.js",
-      "static/chunks/619-ba102abea3e3d0e4.js",
-      "static/chunks/app/map/page-c49f93ff3fa72335.js"
-    ],
     "/page": [
       "static/chunks/webpack-74c939c87fa0092a.js",
       "static/chunks/4bd1b696-c023c6e3521b1417.js",
@@ -39,13 +31,21 @@
       "static/chunks/619-ba102abea3e3d0e4.js",
       "static/chunks/app/page-64ea1660ed0f14a2.js"
     ],
+    "/map/page": [
+      "static/chunks/webpack-74c939c87fa0092a.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-f9c534389f1b5ee3.js",
+      "static/chunks/main-app-946ec161fab91dc2.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/app/map/page-c49f93ff3fa72335.js"
+    ],
     "/timetable/page": [
       "static/chunks/webpack-74c939c87fa0092a.js",
       "static/chunks/4bd1b696-c023c6e3521b1417.js",
       "static/chunks/255-f9c534389f1b5ee3.js",
       "static/chunks/main-app-946ec161fab91dc2.js",
       "static/chunks/619-ba102abea3e3d0e4.js",
-      "static/chunks/app/timetable/page-9f56a59a2cf84da2.js"
+      "static/chunks/app/timetable/page-5ab289aa68a26d20.js"
     ],
     "/events/[slug]/page": [
       "static/chunks/webpack-74c939c87fa0092a.js",
